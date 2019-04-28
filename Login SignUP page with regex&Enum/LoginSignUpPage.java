@@ -20,12 +20,12 @@ public class LoginSignUpPage extends JFrame{
 
 	enum Role {
 		STUDENT,TEACHER,ADMIN,GUEST;
-		
+
 	}
 
 	enum Gender {
 		MALE,FEMALE;
-		
+
 	}
 	public LoginSignUpPage() {
 		setTitle("Login/sign up page");
@@ -58,10 +58,10 @@ public class LoginSignUpPage extends JFrame{
 
 		JLabel lblRole = new JLabel("Role");
 		add(lblRole);
-		
+
 		comboRole = new JComboBox(Role.values());
 		add(comboRole);
-		
+
 		add(new JLabel("Name"));
 		txtName = new JTextField();
 		add(txtName);
@@ -73,7 +73,7 @@ public class LoginSignUpPage extends JFrame{
 		add(new JLabel("Gender"));
 		dcmGender = new DefaultComboBoxModel<>();
 		comboGender = new JComboBox<>(Gender.values());
-		
+
 		add(comboGender);
 
 		add(new JLabel("Birth date(DD.MM.YYYY)"));
@@ -119,11 +119,11 @@ public class LoginSignUpPage extends JFrame{
 			public void keyReleased(KeyEvent e) {
 				passwordField.setText(passwordField.getText().replaceAll("\\s", ""));
 			}
-			
+
 		});
-		
+
 		//txtUser, txtDate, txtName, txtSurname, txtPhone, txtPost;
-		
+
 		rb2.addItemListener(new ItemListener() {
 
 			@Override
@@ -131,15 +131,15 @@ public class LoginSignUpPage extends JFrame{
 				txtDate.setEditable(true);
 				txtName.setEditable(true);
 				txtSurname.setEditable(true);
-				txtPhone.setEditable(true);					
+				txtPhone.setEditable(true);
 				txtPost.setEditable(true);
 				txtEmail.setEditable(true);
 				comboRole.setEnabled(true);
 				comboGender.setEnabled(true);
 				buttonEnter.setText("SignUp");
-				
+
 			}
-			
+
 		});
 		rbLogin.addItemListener(new ItemListener(){
 
@@ -163,10 +163,10 @@ public class LoginSignUpPage extends JFrame{
 				txtEmail.setText("");
 				passwordField.setText("");
 				txtUser.setText("");
-			
+
 				buttonEnter.setText("Login");
 			}
-			
+
 		});
 		passwordField.addKeyListener(new Inter() {
 
@@ -174,7 +174,7 @@ public class LoginSignUpPage extends JFrame{
 			public void keyReleased(KeyEvent e) {
 			passwordField.setText(passwordField.getText().replaceAll("\\s", ""));
 			}
-			
+
 		});
 		txtUser.addKeyListener(new Inter(){
 
@@ -186,10 +186,10 @@ public class LoginSignUpPage extends JFrame{
 					lblInfo.setText("incorrect UserName");
 				}
 			}
-			
-			
-			
-			
+
+
+
+
 		});
 		passwordField.addKeyListener(new Inter() {
 
@@ -202,7 +202,7 @@ public class LoginSignUpPage extends JFrame{
 					lblInfo.setText("incorrect password password mus be at least 6 character");
 				}
 			}
-			
+
 		});
 		txtName.addKeyListener(new Inter() {
 
@@ -214,7 +214,7 @@ public class LoginSignUpPage extends JFrame{
 					lblInfo.setText("incorrect name");
 				}
 			}
-			
+
 		});
 		txtSurname.addKeyListener(new Inter() {
 
@@ -225,10 +225,10 @@ public class LoginSignUpPage extends JFrame{
 				}else {
 					lblInfo.setText("incorrect Surname");
 				}
-			
+
 			}
-			
-			
+
+
 		});
 		txtDate.addKeyListener(new Inter(){
 
@@ -240,7 +240,7 @@ public class LoginSignUpPage extends JFrame{
 					lblInfo.setText("incorrect date type");
 				}
 			}
-			
+
 		});
 		txtPhone.addKeyListener(new Inter() {
 
@@ -248,12 +248,12 @@ public class LoginSignUpPage extends JFrame{
 			public void keyTyped(KeyEvent e) {
 				if(txtPhone.getText().matches("[+]{1}[0-9]{2}[0-9]{10}|[0]{2}[0-9]{2}[0-9]{10}|[0-9]{10}")) {
 					lblInfo.setText("");
-					
+
 				}else {
 					lblInfo.setText("incorrect phone number");
 				}
 			}
-			
+
 		});
 		txtPost.addKeyListener(new Inter() {
 
@@ -261,12 +261,12 @@ public class LoginSignUpPage extends JFrame{
 			public void keyTyped(KeyEvent e) {
 				if(txtPost.getText().matches("[0-9]{5}")) {
 					lblInfo.setText("");
-					
+
 				}else {
 					lblInfo.setText("incorrect postcode");
 				}
 			}
-			
+
 		});
 		txtEmail.addKeyListener(new Inter() {
 				String extensions= "(com|edu|k12|org|net|edu|gov|mil|biz|info|mobi)";
@@ -278,9 +278,9 @@ public class LoginSignUpPage extends JFrame{
 				}else {
 					lblInfo.setText("incorrect email type");
 				}
-					
+
 			}
-			
+
 		});
 		buttonClear.addActionListener(new Inter() {
 
@@ -297,17 +297,58 @@ public class LoginSignUpPage extends JFrame{
 				passwordField.setText("");
 				txtUser.setText("");
 			}
-			
+
 		});
 		}
-	
-	
-	
+		buttonEnter.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if(rb2.isSelected()) {
+					try {
+						File file = new File ("signUp.txt");
+						FileWriter fw = new FileWriter(file);
+						fw.write(txtUser.getText()+"\t"+passwordField.getText()+ "\t"+comboRole.getSelectedItem()+ "\t"+ "\t"+txtName.getText()+ "\t"+txtSurname.getText()+ "\t"
+						+comboGender.getSelectedItem()+ "\t"+txtDate.getText()+ "\t"+txtPhone.getText()+ "\t"+txtPost.getText()+ "\t"+txtEmail.getText());
+						fw.flush();
+						fw.close();
+					}catch(IOException a) {
+						a.printStackTrace();
+
+					}
+				}
+			}
+
+		});
+		passwordField.addKeyListener(new Inter() {
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				if(e.getKeyCode()==KeyEvent.VK_ENTER && rbLogin.isSelected()) {
+					buttonEnter.doClick();
+				}
+			}
+
+		});
+		txtEmail.addKeyListener(new Inter() {
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				if(e.getKeyCode()==KeyEvent.VK_ENTER && rb2.isSelected()) {
+					buttonEnter.doClick();
+				}
+			}
+
+		});
+
+
+
 	public static void main(String[] args) {
 		new LoginSignUpPage().setVisible(true);
-		
+
 		Inter handle = new Inter();
-		
+
 
 	}
 }
