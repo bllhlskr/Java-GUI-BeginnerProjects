@@ -1,0 +1,50 @@
+1.	This is a Login/SignUP page with a regex and enum.
+
+2.	Radio buttons use item listener to handle events: 
+
+a. Login Radio Button sets the button name as “Login” and enables following fields: 
+  User name 
+  Password
+  Role 
+b. SignUp button sets all components enable (setEnabled) and changes the button name to “Sign up”. 
+	
+ 3.	2 Enums for Role and Gender: 
+ 	a.	Role (Admin, guest, student, teacher) comboBox’s type is Role (enum)
+ 
+	b.	Gender (male, female, not specified) combobox’s type is String (from enum) 
+
+ 4.	Password input removes space characters with KeyListener’s keyReleased method. 
+
+ 5.	Regular expressions:
+  Regular expression controls username, password, name, surname, birth date,  phone number,  post code  and email.
+          
+ a. username:       
+  starts with a letter         
+  and _ symbols and numbers are accepted   
+  At least 6 characters 
+	
+ b.	Password: 
+ At least 6 characters 
+
+ c.	Name: 
+ At least 2 characters
+ First 2 character should be a letter
+ After 2 characters space is allowed
+ For middle name at least 2 characters 
+	
+ d.	Surname
+ Same as name 
+
+ e.	Birth Date:
+ Should be entered in dd.mm.yyyy format 
+
+ f.	Phone number:
+      formats:
+   (country code)xxxxxxxxxx
+   00(country code)xxxxxxxxxx
+   xxxxxxxxxx 
+ g. PostCode:
+ Exact 5 digits 
+ h. Email:
+ User name is same as user name field 1 @ symbol After @, service name (gmail, outlook etc), extension(com, edu, etc.) 
+
