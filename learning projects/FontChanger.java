@@ -6,7 +6,7 @@ import java.util.Scanner;
 import javax.swing.*;
 
 
-public class FontCahnger extends JFrame {
+public class FontChanger extends JFrame {
 	private JTextField tf;
 	private Font pf;
 	private Font bf;
